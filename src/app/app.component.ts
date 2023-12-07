@@ -36,4 +36,11 @@ export class AppComponent implements OnInit {
   }
 
 
+  currentView: string = 'addEvent'; // Default view
+
+  changeView(view: string): void {
+    this.currentView = view;
+  }
+
+
 }

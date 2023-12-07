@@ -1,3 +1,68 @@
-<div *ngFor = "let event of events">
-  <div>{{event.name}}</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">EVENTS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeView('addEvent')" [class.active]="currentView === 'addEvent'">Add event</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="changeView('searchEvents')" [class.active]="currentView === 'searchEvents'">Search events</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="currentView === 'addEvent'" class="container-fluid">
+<form style="max-width: 50%;" >
+  <div class="mb-3">
+    <label for="nameInput" class="form-label">Name</label>
+    <input type="text" class="form-control" id="nameInput">
+  </div>
+  <div class="mb-3">
+    <label for="timeFromInput" class="form-label">Start time of event</label>
+    <input type="datetime-local" class="form-control" id="timeFromInput">
+  </div>
+  <div class="mb-3">
+    <label for="timeToInput" class="form-label">End time of event</label>
+    <input type="datetime-local" class="form-control" id="timeToInput">
+  </div>
+  <div class="mb-3">
+    <label for="freeEntrance" class="form-label">Free entrance?</label>
+    <select class="form-select" aria-label="freeEntrance" id="freeEntrance">
+      <option value="yes">YES</option>
+      <option selected value="no">NO</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
 </div>
+
+<div *ngIf="currentView === 'searchEvents'" class="container-fluid">
+  <form style="max-width: 50%;" >
+    <div class="mb-3">
+      <label for="nameSearchInput" class="form-label">Name of event</label>
+      <input type="text" class="form-control" id="nameSearchInput">
+    </div>
+    <div class="mb-3">
+      <label for="searchTimeFrom" class="form-label">Start time of event</label>
+      <input type="datetime-local" class="form-control" id="searchTimeFrom">
+    </div>
+    <div class="mb-3">
+      <label for="searchTimeTo" class="form-label">End time of event</label>
+      <input type="datetime-local" class="form-control" id="searchTimeTo">
+    </div>
+    <div class="mb-3">
+      <label for="searchFreeEntrance" class="form-label">Free entrance?</label>
+      <select class="form-select" aria-label="freeEntrance" id="searchFreeEntrance">
+        <option value="yes">YES</option>
+        <option selected value="no">NO</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
+  </div>

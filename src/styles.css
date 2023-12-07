@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+.navbar-nav .nav-link.active {
+    background-color: rgb(172, 206, 241);
+    color: #fff;
+}
+
+.navbar-nav .nav-link:hover {
+    cursor: pointer;
+}
