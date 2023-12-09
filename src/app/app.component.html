@@ -43,6 +43,8 @@
 </div>
 
 <div *ngIf="currentView === 'searchEvents'" class="container-fluid">
+  <button class="btn btn-primary" (click)="toggleFormSimple()">Simple search</button>
+  <div *ngIf="showFormSimple">
   <form style="max-width: 50%;" >
     <div class="mb-3">
       <label for="nameSearchInput" class="form-label">Name of event</label>
@@ -63,6 +65,61 @@
         <option selected value="no">NO</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
+    <div class="mb-3">
+    <label for="cityAdd" class="form-label">City</label>
+    <select class="form-select" id="cityAdd">
+      <option value="1">One</option>
+      <option value="2">Two</option>
+      <option value="3">Three</option>
+    </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
   </form>
   </div>
+</div>
+
+
+<div *ngIf="currentView === 'searchEvents'" class="container-fluid">
+  <button class="btn btn-primary mt-2" (click)="toggleFormAdvanced()">Advanced search</button>
+  <div *ngIf="showFormAdvanced">
+  <form style="max-width: 50%;">
+    <div class="mb-3">
+      <label for="regionInput" class="form-label">Region</label>
+      <select multiple id="regionInput" class="form-select">
+        <option selected>Select region...</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="municipalityInput" class="form-label">Municipality</label>
+      <select multiple class="form-select" id="municipalityInput">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="citySizeInput" class="form-label">City size</label>
+      <select multiple class="form-select" id="citySizeInput">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="cityPicker" class="form-label">City</label>
+      <select multiple class="form-select" id="cityPicker">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Show events</button>
+  </form>
+  </div>
+</div>

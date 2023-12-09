@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   constructor(private eventService: EventService){}
 
   ngOnInit(): void {
-    this.getEvents();  
+    /*this.getEvents();*/  
   }
 
   public getEvents(): void {
@@ -36,10 +36,21 @@ export class AppComponent implements OnInit {
   }
 
 
-  currentView: string = 'addEvent'; // Default view
+  currentView: string = 'searchEvents'; // Default view
 
   changeView(view: string): void {
     this.currentView = view;
+  }
+
+  showFormSimple: boolean = false;
+  showFormAdvanced: boolean = false;
+
+  toggleFormSimple() {
+    this.showFormSimple = !this.showFormSimple;
+  }
+
+  toggleFormAdvanced() {
+    this.showFormAdvanced = !this.showFormAdvanced;
   }
 
 
