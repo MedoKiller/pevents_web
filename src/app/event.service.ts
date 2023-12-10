@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Event } from "./event";
@@ -9,6 +9,12 @@ import { environment } from "../environments/environment";
 })
 export class EventService{
     private apiServerUrl=environment.apiBaseUrl;
+
+    private httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        }),
+      };
 
     constructor(private http: HttpClient){}
 
@@ -26,6 +32,10 @@ export class EventService{
 
     public deleteEvent(eventId: number): Observable<void>{
         return this.http.delete<void>(`${this.apiServerUrl}/event/delete/${eventId}`);
+    }
+
+    public findEvents(formData: object): Observable<Event[]>{
+        return this.http.post<Event[]>(`${this.apiServerUrl}/event/find/simple`,formData,this.httpOptions);
     }
 
 }
