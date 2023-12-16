@@ -42,54 +42,31 @@
 </form>
 </div>
 
+<div class="mb-3">
+  <p-multiSelect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name"></p-multiSelect>
+</div>
+
 <div *ngIf="currentView === 'searchEvents'" class="container-fluid">
   <!--<button class="btn btn-primary" (click)="toggleFormSimple()">Simple search</button>-->
   <!--<div *ngIf="showFormSimple">-->
   <form (ngSubmit)="onSubmit()" style="max-width: 50%;" >
     <div class="mb-3">
       <label for="nameSearchInput" class="form-label">Name of event</label>
-      <input type="text" class="form-control" id="nameSearchInput" [(ngModel)]="name" name="name">
+      <input type="text" class="form-control" id="nameSearchInput">
     </div>
     <div class="mb-3">
       <label for="searchTimeFrom" class="form-label">Start time of event</label>
-      <input type="datetime-local" class="form-control" id="searchTimeFrom" [(ngModel)]="startTime" name="startTime">
+      <input type="datetime-local" class="form-control" id="searchTimeFrom" >
     </div>
     <div class="mb-3">
       <label for="searchTimeTo" class="form-label">End time of event</label>
-      <input type="datetime-local" class="form-control" id="searchTimeTo" [(ngModel)]="endTime" name="endTime">
+      <input type="datetime-local" class="form-control" id="searchTimeTo">
     </div>
     <div class="mb-3">
       <label for="searchFreeEntrance" class="form-label">Free entrance?</label>
-      <select class="form-select" aria-label="freeEntrance" id="searchFreeEntrance" [(ngModel)]="freeEntrance" name="freeEntrance">
+      <select class="form-select" aria-label="freeEntrance" id="searchFreeEntrance">
         <option value="yes">YES</option>
         <option selected value="no">NO</option>
-      </select>
-    </div>
-    <div class="mb-3">
-    <label for="cityAdd" class="form-label">City</label>
-    <select class="form-select" id="cityAdd" [(ngModel)]="selectedCity" name="selectedCity">
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-  </form>
-  <!--</div>-->
-</div>
-
-
-<div *ngIf="currentView === 'searchEvents'" class="container-fluid">
-  <button class="btn btn-primary mt-2" (click)="toggleFormAdvanced()">Advanced search</button>
-  <div *ngIf="showFormAdvanced">
-  <form style="max-width: 50%;">
-    <div class="mb-3">
-      <label for="regionInput" class="form-label">Region</label>
-      <select multiple id="regionInput" class="form-select">
-        <option selected>Select region...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
       </select>
     </div>
     <div class="mb-3">
@@ -119,7 +96,7 @@
         <option value="3">Three</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Show events</button>
+    <button type="submit" class="btn btn-primary">Search</button>
   </form>
-  </div>
+  <!--</div>-->
 </div>

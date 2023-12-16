@@ -1,30 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { Event } from './event';
-import { EventService } from './event.service';
 import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FormGroup,FormBuilder } from '@angular/forms';
-
+import { MultiSelectModule } from 'primeng/multiselect';
+import { City } from './test';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Event } from './event';
+import { EventService } from './event.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,HttpClientModule,FormsModule],
+  imports: [
+    HttpClientModule,
+    FormsModule,
+    MultiSelectModule,
+    NoopAnimationsModule, // Use NoopAnimationsModule or BrowserAnimationsModule, but not both
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [EventService]
+  styleUrls: ['./app.component.css'],
+  providers: [EventService],
+  animations: [], // You can add animations here if needed
 })
 export class AppComponent implements OnInit {
   title = 'pevents_web';
 
   public events: Event[] = [];
 
-  constructor(private eventService: EventService){}
+  cities!: City[];
+
+  selectedCities!: City[];
+
+  constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
-    /*this.getEvents();*/  
+    /*this.getEvents();*/
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' },
+    ];
   }
 
   public getEvents(): void {
@@ -38,7 +54,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-
   currentView: string = 'searchEvents'; // Default view
 
   changeView(view: string): void {
@@ -46,60 +61,12 @@ export class AppComponent implements OnInit {
   }
 
   showFormSimple: boolean = false;
-  showFormAdvanced: boolean = false;
 
   toggleFormSimple() {
     this.showFormSimple = !this.showFormSimple;
   }
 
-  toggleFormAdvanced() {
-    this.showFormAdvanced = !this.showFormAdvanced;
-  }
-
-
-
-  name: string ='';
-  startTime: string ='';
-  endTime: string ='';
-  freeEntrance: string ='';
-  selectedCity: string ='';
-
-  private formData =  {
-    name: this.name,
-    startTime: this.startTime,
-    endTime: this.endTime,
-    freeEntrance: this.freeEntrance,
-    selectedCity: this.selectedCity
-  };
-
-  public formEvents: Event | undefined;
-
   onSubmit() {
-    this.formData = {
-      name: this.name,
-      startTime: this.startTime,
-      endTime: this.endTime,
-      freeEntrance: this.freeEntrance,
-      selectedCity: this.selectedCity
-    };
-
-    console.log('Form submitted:', this.formData);
-
-    this.getEvents2();
     // Perform any other actions with the form data as needed
   }
-
-  public getEvents2(): void {
-    this.eventService.findEvents(this.formData).subscribe(
-      (response: Event[]) => {
-        console.log(response);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
 }
-
-
